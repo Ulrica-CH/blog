@@ -61,7 +61,7 @@ div:focus {
 }
 
 .layout {
-  background: linear-gradient(90deg, #ffffff 1%, #ead2ea 10.2%, #e4d5ee 19.6%, #d1def3 36.8%, #b5dee5 62.2%, #cfebf3 88.9%, #ffffff 99%) !important;
+  // background: linear-gradient(90deg, #ffffff 1%, #ead2ea 10.2%, #e4d5ee 19.6%, #d1def3 36.8%, #b5dee5 62.2%, #cfebf3 88.9%, #ffffff 99%) !important;
 }
 .gradient {
   background: rgb(255, 255, 255, 0.7);
@@ -186,7 +186,7 @@ div:focus {
 @media screen and (max-width: 768px) {
   .home_center_box {
     padding-top: 83px;
-    max-width: 1000px;
+    max-width: 1296px;
     margin: 0 auto;
     min-height: calc(100vh - 128px);
   }

@@ -122,7 +122,10 @@ onBeforeUnmount(() => {
   <div class="home_center_box">
     <el-row>
       <el-col :xs="24" :sm="18">
-        <el-card class="mobile-top-card mobile-card info-card animate__animated animate__fadeIn" shadow="hover">
+        <el-card
+          class="mobile-top-card mobile-card info-card animate__animated animate__fadeIn"
+          shadow="hover"
+        >
           <el-skeleton :loading="rightSizeLoading" animated>
             <template #template>
               <MobileTopSkeleton />
@@ -133,8 +136,16 @@ onBeforeUnmount(() => {
           </el-skeleton>
         </el-card>
         <!-- 博客文章 -->
-        <HomeArticleList :articleList="articleList" :param="param" :articleTotal="articleTotal" @pageChange="pagination"></HomeArticleList>
-        <el-card class="mobile-bottom-card card-hover mobile-card info-card animate__animated animate__fadeIn" shadow="hover">
+        <HomeArticleList
+          :articleList="articleList"
+          :param="param"
+          :articleTotal="articleTotal"
+          @pageChange="pagination"
+        ></HomeArticleList>
+        <el-card
+          class="mobile-bottom-card card-hover mobile-card info-card animate__animated animate__fadeIn"
+          shadow="hover"
+        >
           <el-skeleton :loading="rightSizeLoading" animated>
             <template #template>
               <RightSideSkeletonItem />
@@ -152,7 +163,9 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="flex_r_between">
                     <span>博客访问次数：</span>
-                    <span class="value">{{ numberFormate(configDetail.view_time) }}</span>
+                    <span class="value">{{
+                      numberFormate(configDetail.view_time)
+                    }}</span>
                   </div>
                 </div>
               </RightSideItem>
@@ -162,7 +175,12 @@ onBeforeUnmount(() => {
       </el-col>
       <el-col :xs="0" :sm="6">
         <!-- 博客我的信息 -->
-        <RightSide :configDetail="configDetail" :tags="tags" :runtime="runtime" :loading="rightSizeLoading" />
+        <RightSide
+          :configDetail="configDetail"
+          :tags="tags"
+          :runtime="runtime"
+          :loading="rightSizeLoading"
+        />
       </el-col>
     </el-row>
   </div>
@@ -177,6 +195,7 @@ onBeforeUnmount(() => {
   }
   :deep(.personal-say) {
     padding-left: 1rem;
+    // height: 0;
   }
   :deep(.info-background) {
     height: 10rem;

@@ -71,72 +71,72 @@ const routes = [
         },
         component: () => import("@/views/article/article-list.vue"),
       },
-      {
-        path: "/photoAlbum",
-        name: "PhotoAlbum",
-        meta: {
-          name: "相册",
-        },
-        component: () => import("@/views/photo/photo-album.vue"),
-      },
-      {
-        path: "/photos",
-        name: "Photos",
-        meta: {
-          name: "图库",
-        },
-        component: () => import("@/views/photo/photos.vue"),
-      },
-      {
-        path: "/talk",
-        name: "Talk",
-        meta: {
-          name: "说说",
-        },
-        component: () => import("@/views/talk/talk.vue"),
-      },
+      // {
+      //   path: "/photoAlbum",
+      //   name: "PhotoAlbum",
+      //   meta: {
+      //     name: "相册",
+      //   },
+      //   component: () => import("@/views/photo/photo-album.vue"),
+      // },
+      // {
+      //   path: "/photos",
+      //   name: "Photos",
+      //   meta: {
+      //     name: "图库",
+      //   },
+      //   component: () => import("@/views/photo/photos.vue"),
+      // },
+      // {
+      //   path: "/talk",
+      //   name: "Talk",
+      //   meta: {
+      //     name: "说说",
+      //   },
+      //   component: () => import("@/views/talk/talk.vue"),
+      // },
 
-      {
-        path: "/resources",
-        name: "Resources",
-        meta: {
-          name: "资源导航",
-        },
-        children: [
-          {
-            path: "/resources/front",
-            name: "Front",
-            meta: {
-              name: "前端",
-            },
-            component: () => import("@/views/resources/category-list.vue"),
-          },
-          {
-            path: "/resources/back",
-            name: "Back",
-            meta: {
-              name: "后端",
-            },
-            component: () => import("@/views/resources/category-list.vue"),
-          },
-          {
-            path: "/resources/link",
-            name: "Link",
-            meta: {
-              name: "友链",
-            },
-            component: () => import("@/views/links/link-list.vue"),
-          },
-        ],
-      },
-      {
-        path: "/siteList",
-        name: "SiteList",
-        meta: {
-          name: "网站列表",
-        },
-        component: () => import("@/views/resources/site-list.vue"),
-      },
+      // {
+      //   path: "/resources",
+      //   name: "Resources",
+      //   meta: {
+      //     name: "资源导航",
+      //   },
+      //   children: [
+      //     {
+      //       path: "/resources/front",
+      //       name: "Front",
+      //       meta: {
+      //         name: "前端",
+      //       },
+      //       component: () => import("@/views/resources/category-list.vue"),
+      //     },
+      //     {
+      //       path: "/resources/back",
+      //       name: "Back",
+      //       meta: {
+      //         name: "后端",
+      //       },
+      //       component: () => import("@/views/resources/category-list.vue"),
+      //     },
+      //     {
+      //       path: "/resources/link",
+      //       name: "Link",
+      //       meta: {
+      //         name: "友链",
+      //       },
+      //       component: () => import("@/views/links/link-list.vue"),
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: "/siteList",
+      //   name: "SiteList",
+      //   meta: {
+      //     name: "网站列表",
+      //   },
+      //   component: () => import("@/views/resources/site-list.vue"),
+      // },
       {
         path: "/userCenter",
         name: "UserCenter",
@@ -145,41 +145,41 @@ const routes = [
         },
         component: () => import("@/views/user/user-center.vue"),
       },
-      {
-        path: "/message",
-        name: "Message",
-        meta: {
-          name: "留言",
-        },
-        // component: () => import("@/views/message/index.vue"),
+      // {
+      //   path: "/message",
+      //   name: "Message",
+      //   meta: {
+      //     name: "留言",
+      //   },
+      //   // component: () => import("@/views/message/index.vue"),
 
-        children: [
-          {
-            path: "list",
-            name: "Message",
-            meta: {
-              name: "留言",
-            },
-            component: () => import("@/views/message/index.vue"),
-          },
-          {
-            path: "publish",
-            name: "publish",
-            meta: {
-              name: "编辑/新增留言",
-            },
-            component: () => import("@/views/message/publish.vue"),
-          },
-          {
-            path: "detail",
-            name: "MessageDetail",
-            meta: {
-              name: "留言详情",
-            },
-            component: () => import("@/views/message/detail.vue"),
-          }
-        ]
-      },
+      //   children: [
+      //     {
+      //       path: "list",
+      //       name: "Message",
+      //       meta: {
+      //         name: "留言",
+      //       },
+      //       component: () => import("@/views/message/index.vue"),
+      //     },
+      //     {
+      //       path: "publish",
+      //       name: "publish",
+      //       meta: {
+      //         name: "编辑/新增留言",
+      //       },
+      //       component: () => import("@/views/message/publish.vue"),
+      //     },
+      //     {
+      //       path: "detail",
+      //       name: "MessageDetail",
+      //       meta: {
+      //         name: "留言详情",
+      //       },
+      //       component: () => import("@/views/message/detail.vue"),
+      //     }
+      //   ]
+      // },
     ]
   },
   {

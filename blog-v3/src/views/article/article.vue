@@ -8,7 +8,13 @@ import { storeToRefs } from "pinia";
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 
-import { getArticleById, getRecommendArticleById, readingDuration, articleLike, cancelArticleLike } from "@/api/article";
+import {
+  getArticleById,
+  getRecommendArticleById,
+  readingDuration,
+  articleLike,
+  cancelArticleLike,
+} from "@/api/article";
 import { addLike, cancelLike, getIsLikeByIdAndType } from "@/api/like";
 
 import Comment from "@/components/Comment/Comment.vue";
@@ -59,13 +65,21 @@ const like = async () => {
   if (isLike.value) {
     let tRes = await cancelArticleLike(route.query.id);
     if (tRes.code == 0) {
-      await cancelLike({ for_id: articleInfo.value.id, type: 1, user_id: getUserInfo.value.id });
+      await cancelLike({
+        for_id: articleInfo.value.id,
+        type: 1,
+        user_id: getUserInfo.value.id,
+      });
       articleInfo.value.thumbs_up_times--;
       isLike.value = false;
       ElNotification({
         offset: 60,
         title: "提示",
-        message: h("div", { style: "color: #7ec050; font-weight: 600;" }, "有什么不足可以给我留下评论，感谢指正"),
+        message: h(
+          "div",
+          { style: "color: #7ec050; font-weight: 600;" },
+          "有什么不足可以给我留下评论，感谢指正"
+        ),
       });
     }
   }
@@ -73,13 +87,21 @@ const like = async () => {
   else {
     let tRes = await articleLike(route.query.id);
     if (tRes.code == 0) {
-      await addLike({ for_id: articleInfo.value.id, type: 1, user_id: getUserInfo.value.id });
+      await addLike({
+        for_id: articleInfo.value.id,
+        type: 1,
+        user_id: getUserInfo.value.id,
+      });
       articleInfo.value.thumbs_up_times++;
       isLike.value = true;
       ElNotification({
         offset: 60,
         title: "提示",
-        message: h("div", { style: "color: #7ec050; font-weight: 600;" }, "点赞成功，谢谢支持"),
+        message: h(
+          "div",
+          { style: "color: #7ec050; font-weight: 600;" },
+          "点赞成功，谢谢支持"
+        ),
       });
     }
   }
@@ -91,7 +113,11 @@ const getArticleDetails = async (id) => {
     mdState.text = res.result.article_content;
     articleInfo.value = res.result;
     if (getUserInfo.value.id) {
-      const res = await getIsLikeByIdAndType({ for_id: articleInfo.value.id, type: 1, user_id: getUserInfo.value.id });
+      const res = await getIsLikeByIdAndType({
+        for_id: articleInfo.value.id,
+        type: 1,
+        user_id: getUserInfo.value.id,
+      });
       if (res.code == 0) {
         isLike.value = res.result;
       }
@@ -150,20 +176,38 @@ watch(
       <el-col :xs="24" :sm="18">
         <el-skeleton v-if="loading" :loading="loading" :rows="8" animated />
         <el-card v-else class="md-preview">
-          <MdEditor class="md-preview-v3" v-model="mdState.text" :editorId="mdState.id" :previewOnly="true" :preview-theme="previewTheme" :code-theme="codeTheme" :theme="mainTheme ? 'dark' : 'light'"></MdEditor>
+          <MdEditor
+            class="md-preview-v3"
+            v-model="mdState.text"
+            :editorId="mdState.id"
+            :previewOnly="true"
+            :preview-theme="previewTheme"
+            :code-theme="codeTheme"
+            :theme="mainTheme ? 'dark' : 'light'"
+          ></MdEditor>
           <div class="article-info">
             <div class="article-info-inner">
               <div>
                 <span>文章作者：</span>
-                <a class="to_pointer" href="https://gitee.com/mrzym">{{ articleInfo.authorName }}</a>
+                <a class="to_pointer" href="https://gitee.com/mrzym">{{
+                  articleInfo.authorName
+                }}</a>
               </div>
               <div>
                 <span>类型：</span>
-                <el-tag>{{ articleInfo.type == 1 ? "原创" : articleInfo.type == 2 ? "转载" : "翻译" }}</el-tag>
+                <el-tag>{{
+                  articleInfo.type == 1
+                    ? "原创"
+                    : articleInfo.type == 2
+                    ? "转载"
+                    : "翻译"
+                }}</el-tag>
               </div>
               <div v-if="articleInfo.type != 1">
                 <span>原文链接：</span>
-                <a class="to_pointer" :href="articleInfo.origin_url">{{ articleInfo.origin_url }}</a>
+                <a class="to_pointer" :href="articleInfo.origin_url">{{
+                  articleInfo.origin_url
+                }}</a>
               </div>
               <div v-else>
                 <span>本文链接：</span>
@@ -180,7 +224,11 @@ watch(
           </div>
           <div class="recommend flex_r_between">
             <div class="recommend-box" @click="goToArticle(previousArticle)">
-              <el-image class="recommend-box-img animate__animated animate__fadeInDown" fit="cover" :src="previousArticle.article_cover">
+              <el-image
+                class="recommend-box-img animate__animated animate__fadeInDown"
+                fit="cover"
+                :src="previousArticle.article_cover"
+              >
                 <template #error>
                   <svg-icon name="image" :width="10" :height="5"></svg-icon>
                 </template>
@@ -190,11 +238,21 @@ watch(
                   <i class="iconfont icon-arrowleft"></i>
                   <span class="font-semibold">上一篇</span>
                 </span>
-                <Tooltip width="60%" color="#fff" :weight="600" :name="previousArticle.article_title" align="left"></Tooltip>
+                <Tooltip
+                  width="60%"
+                  color="#fff"
+                  :weight="600"
+                  :name="previousArticle.article_title"
+                  align="left"
+                ></Tooltip>
               </span>
             </div>
             <div class="recommend-box" @click="goToArticle(nextArticle)">
-              <el-image class="recommend-box-img animate__animated animate__fadeInDown" fit="cover" :src="nextArticle.article_cover">
+              <el-image
+                class="recommend-box-img animate__animated animate__fadeInDown"
+                fit="cover"
+                :src="nextArticle.article_cover"
+              >
                 <template #error>
                   <svg-icon name="image" :width="10" :height="5"></svg-icon>
                 </template>
@@ -204,7 +262,13 @@ watch(
                   <span class="font-semibold">下一篇</span>
                   <i class="iconfont icon-arrowright"></i>
                 </span>
-                <Tooltip width="60%" color="#fff" :weight="600" :name="nextArticle.article_title" align="right"></Tooltip>
+                <Tooltip
+                  width="60%"
+                  color="#fff"
+                  :weight="600"
+                  :name="nextArticle.article_title"
+                  align="right"
+                ></Tooltip>
               </span>
             </div>
           </div>
@@ -212,12 +276,23 @@ watch(
           <div class="mobile-recommend">
             <el-row style="padding: 2rem">
               <div class="recommend-title">推荐文章</div>
-              <el-col :span="12" v-for="(item, index) in recommendList" :key="index" @click="goToArticle(item)">
+              <el-col
+                :span="12"
+                v-for="(item, index) in recommendList"
+                :key="index"
+                @click="goToArticle(item)"
+              >
                 <el-card class="card card-hover">
                   <template #header>
-                    <span :title="item.article_title" class="title">{{ item.article_title }}</span>
+                    <span :title="item.article_title" class="title">{{
+                      item.article_title
+                    }}</span>
                   </template>
-                  <el-image class="image animate__animated animate__fadeInDown" fit="cover" :src="item.article_cover">
+                  <el-image
+                    class="image animate__animated animate__fadeInDown"
+                    fit="cover"
+                    :src="item.article_cover"
+                  >
                     <template #error>
                       <svg-icon name="image" :width="10" :height="5"></svg-icon>
                     </template>
@@ -227,7 +302,12 @@ watch(
             </el-row>
           </div>
           <div class="!p-[2rem]">
-            <Comment class="w-[100%]" type="article" :id="route.query.id - 0" :author-id="articleInfo.author_id" />
+            <Comment
+              class="w-[100%]"
+              type="article"
+              :id="route.query.id - 0"
+              :author-id="articleInfo.author_id"
+            />
           </div>
         </el-card>
       </el-col>
@@ -235,13 +315,28 @@ watch(
         <el-skeleton v-if="loading" :loading="loading" :rows="3" animated />
         <el-card v-else class="command card-hover" header="推荐文章">
           <div class="command-box">
-            <div class="command-box-item" v-for="(item, index) in recommendList" :key="index" @click="goToArticle(item)">
-              <el-image class="command-box-item__img animate__animated animate__fadeInDown" fit="cover" width="50" :src="item.article_cover">
+            <div
+              class="command-box-item"
+              v-for="(item, index) in recommendList"
+              :key="index"
+              @click="goToArticle(item)"
+            >
+              <el-image
+                class="command-box-item__img animate__animated animate__fadeInDown"
+                fit="cover"
+                width="50"
+                :src="item.article_cover"
+              >
                 <template #error>
                   <svg-icon name="image" :width="5" :height="5"></svg-icon>
                 </template>
               </el-image>
-              <Tooltip width="35%" weight="600" size="1rem" :name="item.article_title" />
+              <Tooltip
+                width="35%"
+                weight="600"
+                size="1rem"
+                :name="item.article_title"
+              />
               <Tooltip width="35%" size="0.8rem" :name="item.createdAt" />
             </div>
           </div>
@@ -250,7 +345,10 @@ watch(
           <el-skeleton v-if="loading" :loading="loading" :rows="5" animated />
           <el-card v-else class="catalogue-card card-hover" header="目录">
             <div class="catalogue-card__box">
-              <MdCatalog :editorId="mdState.id" :scroll-element="scrollElement" />
+              <MdCatalog
+                :editorId="mdState.id"
+                :scroll-element="scrollElement"
+              />
             </div>
           </el-card>
         </el-affix>
@@ -260,8 +358,20 @@ watch(
       <i class="iconfont icon-arrowright" @click="toggleDrawer"></i>
     </div>
     <!-- 移动端目录 -->
-    <el-drawer title="目录" v-model="drawerShow" direction="ltr" :before-close="toggleDrawer" :append-to-body="true" size="60%" :z-index="9999">
-      <MdCatalog v-if="!loading" :editorId="mdState.id" :scroll-element="scrollElement" />
+    <el-drawer
+      title="目录"
+      v-model="drawerShow"
+      direction="ltr"
+      :before-close="toggleDrawer"
+      :append-to-body="true"
+      size="60%"
+      :z-index="9999"
+    >
+      <MdCatalog
+        v-if="!loading"
+        :editorId="mdState.id"
+        :scroll-element="scrollElement"
+      />
     </el-drawer>
   </div>
 </template>
@@ -276,6 +386,9 @@ watch(
       color: var(--font-color);
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
+  }
+  .md-preview{
+    padding: 0 10px;
   }
 }
 

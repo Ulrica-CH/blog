@@ -4,25 +4,26 @@ import { useRouter } from "vue-router";
 import TypeWriter from "@/components/TypeWriter/type-writer";
 
 const router = useRouter();
-const saying = ["这次我不想逃，喝掉失忆毒药", "斯人若彩虹，遇上方知有"];
+// const saying = ["当时只道是寻常", "斯人若彩虹，遇上方知有"];
+const saying = ["当时只道是寻常"];
 
 const menuList = [
   {
     label: "首页",
     path: "/home",
   },
-  {
-    label: "相册",
-    path: "/photoAlbum",
-  },
-  {
-    label: "说说",
-    path: "/talk",
-  },
-  {
-    label: "留言",
-    path: "/message/list",
-  },
+  // {
+  //   label: "相册",
+  //   path: "/photoAlbum",
+  // },
+  // {
+  //   label: "说说",
+  //   path: "/talk",
+  // },
+  // {
+  //   label: "留言",
+  //   path: "/message/list",
+  // },
 ];
 const initBg = () => {
   const canvas = document.getElementById("canvas");
@@ -347,8 +348,8 @@ onMounted(() => {
 
 <template>
   <div class="home_bg">
-    <canvas id="canvas"></canvas>
-    <div class="font">M's Blog</div>
+    <!-- <canvas id="canvas"></canvas> -->
+    <div class="font">XY Blog</div>
     <TypeWriter class="type-writer" :typeList="saying"></TypeWriter>
     <ul class="home-tab">
       <li v-for="item in menuList" :key="item.path" @click="goMenu(item.path)">{{ item.label }}</li>
@@ -385,7 +386,7 @@ onMounted(() => {
 
   li {
     word-break: keep-all;
-    margin-right: 1rem;
+    // margin-right: 1rem;
   }
 }
 .font {

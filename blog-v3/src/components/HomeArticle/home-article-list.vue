@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
       </el-col>
     </template>
     <template v-else>
-      <el-col class="article-col" v-for="(item, index) in articleList" :key="item">
+      <div class="article-col" v-for="(item, index) in articleList" :key="item">
         <el-card class="card-hover">
           <div class="article-box">
             <div class="article-cover" @click="operate('detail', item)">
@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
             </div>
             <!-- 信息 -->
             <div class="article-info flex_c_between animate__animated animate__fadeIn">
-              <span class="title text_overflow" :title="item.article_title" @click="operate('detail', item)">
+              <span class="title pt-2 text_overflow" :title="item.article_title" @click="operate('detail', item)">
                 {{ item.article_title }}
               </span>
               <div class="meta">
@@ -118,13 +118,13 @@ onBeforeUnmount(() => {
                 <span class="to_pointer">
                   <i class="iconfont icon-calendar2"></i>
                   <span class="meta-label">发表于</span>
-                  <span class="meta-value">{{ item.createdAt }}</span>
+                  <span class="meta-value">{{ item.createdAt.split(' ')[0] }}</span>
                 </span>
-                <span class="to_pointer">
+                <!-- <span class="to_pointer">
                   <i class="iconfont icon-schedule"></i>
                   <span class="meta-label">更新于</span>
-                  <span class="meta-value">{{ item.updatedAt }}</span>
-                </span>
+                  <span class="meta-value">{{ item.updatedAt.split(' ')[0] }}</span>
+                </span> -->
                 <span class="article-meta__separator"></span>
                 <span class="to_pointer" @click="operate('category', item)">
                   <i class="iconfont icon-folder"></i>
@@ -151,14 +151,29 @@ onBeforeUnmount(() => {
           </div>
           <!-- 图片 -->
         </el-card>
-      </el-col>
+      </div>
     </template>
     <pagi-nation :size="param.size" :current="param.current" :layout="layout" :total="articleTotal" @pagination="pagination" />
   </el-row>
 </template>
 
 <style lang="scss" scoped>
+.root{
+  display: flex;
+  // justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+.article-col{
+  width: 50%;
+}
+.article-box{
+display: flex;
+flex-direction: column;
 .article-cover {
+  width: 100%;
+  object-fit: contain;
   .image {
     width: 100%;
     height: 100%;
@@ -167,13 +182,14 @@ onBeforeUnmount(() => {
 }
 
 .article-info {
+  width: 100%;
   .title {
     display: inline-block;
     width: 100%;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #676767;
     font-weight: 600;
-    line-height: 3;
+    padding: 0.425rem 0;
     transition: 0.2s ease-in-out;
 
     &:hover {
@@ -231,6 +247,8 @@ onBeforeUnmount(() => {
     }
   }
 }
+}
+
 
 @media screen and (max-width: 768px) {
   .article-box {
